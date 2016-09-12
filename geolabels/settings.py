@@ -33,11 +33,45 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 ALLOWED_HOSTS = ['geolabels.herokuapp.com']
 
-SECURE_HSTS_SECONDS = 0
+# (security.W004)
+# If your entire site is served only over SSL, you may want to consider
+# setting a value and enabling HTTP Strict Transport Security.
+SECURE_HSTS_SECONDS = 30
+
+# (security.W005)
+# Without this, your site is potentially vulnerable to attack via an insecure connection to a subdomain.
+# Only set this to True if you are certain that all subdomains of your domain should be served exclusively via SSL.
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+# (security.W006)
+# You should consider enabling this header to prevent the browser from identifying content types incorrectly.
 SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# (security.W007)
+# You should consider enabling this header to activate the browser's XSS filtering and help prevent XSS attacks.
 SECURE_BROWSER_XSS_FILTER = True
+
+# (security.W008)
+# Unless your site should be available over both SSL and non-SSL connections, you may want to either set this setting True
+# or configure a load balancer or reverse-proxy server to redirect all connections to HTTPS.
 SECURE_SSL_REDIRECT = True
+
+# (security.W012)
+# Using a secure-only session cookie makes it more difficult for network traffic sniffers to hijack user sessions.
 SESSION_COOKIE_SECURE = True
+
+# (security.W016)
+# Using a secure-only CSRF cookie makes it more difficult for network traffic sniffers to steal the CSRF token.
+CSRF_COOKIE_SECURE = True
+
+# (security.W017)
+# Using an HttpOnly CSRF cookie makes it more difficult for cross-site scripting attacks to steal the CSRF token.
+CSRF_COOKIE_HTTPONLY = True
+
+# (security.W019)
+# The default is 'SAMEORIGIN', but unless there is a good reason for your site to serve other parts of itself in a frame,
+# you should change it to 'DENY'.
+X_FRAME_OPTIONS = 'DENY'
 
 # Application definition
 
