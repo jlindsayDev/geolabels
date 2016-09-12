@@ -1,1 +1,1 @@
-web: gunicorn maplabels.wsgi
+web: gunicorn geolabels.wsgi
