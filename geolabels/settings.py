@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ['geolabels.herokuapp.com']
 # (security.W004)
 # If your entire site is served only over SSL, you may want to consider
 # setting a value and enabling HTTP Strict Transport Security.
-SECURE_HSTS_SECONDS = 30
+SECURE_HSTS_SECONDS = 31536000
 
 # (security.W005)
 # Without this, your site is potentially vulnerable to attack via an insecure connection to a subdomain.
