@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['geolabels.herokuapp.com']
+ALLOWED_HOSTS = ['geolabels.herokuapp.com', '127.0.0.1', 'localhost']
 
 # (security.W004)
 # If your entire site is served only over SSL, you may want to consider
@@ -75,7 +75,7 @@ X_FRAME_OPTIONS = 'DENY'
 
 # Avoid infinite redirects on Heroku
 # http://www.marinamele.com/2014/09/security-on-django-app-https-everywhere.html
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+#SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Application definition
 
