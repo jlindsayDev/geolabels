@@ -73,9 +73,14 @@ CSRF_COOKIE_HTTPONLY = True
 # you should change it to 'DENY'.
 X_FRAME_OPTIONS = 'DENY'
 
+# Avoid infinite redirects on Heroku
+# http://www.marinamele.com/2014/09/security-on-django-app-https-everywhere.html
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 # Application definition
 
 INSTALLED_APPS = [
+    'sslserver',
     'points.apps.PointsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
