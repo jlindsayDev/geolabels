@@ -1,3 +1,4 @@
 Django==1.10.1
 django-sslserver==0.19
 waitress==1.0.0
+whitenoise==3.2.1
