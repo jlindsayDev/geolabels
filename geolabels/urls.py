@@ -20,9 +20,5 @@ import demo.views
 urlpatterns = [
     url(r'^$', demo.views.index),
     url(r'^demo/', include('demo.urls')),
-#    url(r'^auth/', auth.site.urls),
-    url(r'^admin/', admin.site.urls),
-#    url(r'^points/', include('points.urls')),
-#    url(r'^map/', include('points.urls')),
 ]
 

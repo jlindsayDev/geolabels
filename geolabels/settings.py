@@ -82,8 +82,6 @@ X_FRAME_OPTIONS = 'DENY'
 
 INSTALLED_APPS = [
     'sslserver',
-    'demo',
-    'points.apps.PointsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
