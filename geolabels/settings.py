@@ -57,6 +57,11 @@ SECURE_BROWSER_XSS_FILTER = True
 # or configure a load balancer or reverse-proxy server to redirect all connections to HTTPS.
 SECURE_SSL_REDIRECT = True
 
+# Avoid infinite redirects on Heroku - no need for django-sslify library
+# http://www.marinamele.com/2014/09/security-on-django-app-https-everywhere.html
+# https://github.com/rdegges/django-sslify#using-django-18-or-later
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 # (security.W012)
 # Using a secure-only session cookie makes it more difficult for network traffic sniffers to hijack user sessions.
 SESSION_COOKIE_SECURE = True
@@ -73,10 +78,6 @@ CSRF_COOKIE_HTTPONLY = True
 # The default is 'SAMEORIGIN', but unless there is a good reason for your site to serve other parts of itself in a frame,
 # you should change it to 'DENY'.
 X_FRAME_OPTIONS = 'DENY'
-
-# Avoid infinite redirects on Heroku
-# http://www.marinamele.com/2014/09/security-on-django-app-https-everywhere.html
-#SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Application definition
 
