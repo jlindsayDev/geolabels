@@ -1,10 +1,89 @@
 <!DOCTYPE html>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
 {% block title %}<title>Geolabels</title>{% endblock %}
 
+<style>
+  #mapid { height: 600px; }
+  body {
+    padding: 0;
+    margin: 0;
+  }
+  html, body, #map {
+    height: 100vh;
+    width: 100vw;
+  }
+</style>
 {% block css %}{% endblock %}
 
+<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+<script src="https://cdn.rawgit.com/mlevans/leaflet-hash/master/leaflet-hash.js"></script>
+<script>
+    var tileUrl = "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}.{ext}";
+    var attribution = '<a href="http://maps.stamen.com">Stamen Map Tiles</a> | '
+        + '<a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; '
+        + '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap Data</a>';
+    var tileOptions = {
+        attribution: attribution,
+        subdomains: 'abcd',
+        minZoom: 0,
+        maxZoom: 20,
+        ext: 'png'
+    };
+
+    function initMap(mapId) {
+        var map = L.map(mapId);
+        var hash = new L.Hash(map);
+        L.tileLayer(tileUrl, tileOptions).addTo(map);
+
+        function onLocationFound(e) {
+          var radius = e.accuracy / 2;
+
+          L.marker(e.latlng).addTo(map)
+            .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+          L.circle(e.latlng, radius).addTo(map);
+        }
+
+        function onLocationError(e) {
+          alert(e.message);
+        }
+
+        map.on('locationfound', onLocationFound);
+        map.on('locationerror', onLocationError);
+        map.locate({setView: true, maxZoom: 16});
+    }
+</script>
 {% block javascript %}{% endblock %}
 
-{% block content %}{% endblock %}
+<main id="map">
+
+<header>
+<h1>Geolabels</h1>
+<a href="#" id="menu-toggle"></a>
+<div id="menu">
+  <nav id="search">
+    <input type="text" placeholder="Place or Food"/>
+    <input type="submit" value="Search"/>
+  </nav>
+
+  {% block auth %}
+  <nav id="auth">
+    <a href='/login'>Login</a>
+  </nav>
+  {% endblock %}
+
+  <nav id="links">
+    <a href="/about">About</a>
+    <a href="/help">Help</a>
+  </nav>
+</div>
+</header>
+
+</main>
+
+<script>
+    initMap("map");
+</script>
+
