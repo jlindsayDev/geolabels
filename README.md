@@ -1,5 +1,9 @@
+Geolabels
+=========
+
 Objectives
-==========
+----------
+
 - create lists of locations
 - plot locations on map
 - search places, addresses, labels
@@ -7,10 +11,12 @@ Objectives
 - link to place reviews
 
 Maybe
-=====
+-----
+
 - frequency map
 - location history
 
 Rationale
-=========
+---------
+
 User -> Categories + Points
