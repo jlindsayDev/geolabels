@@ -1,4 +1,4 @@
 Django>=3.0.0
-django-sslserver>=1.19
+django-sslserver>=0.22
 waitress>=1.4.0
 whitenoise>=3.5.1
